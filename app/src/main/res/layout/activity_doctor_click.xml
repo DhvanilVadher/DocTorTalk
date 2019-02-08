@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/doctorLoginButton"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -116,18 +116,16 @@
         android:text="Don't have an account?"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/doctorLoginButton" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/doctorSignup"
         android:layout_width="85dp"
         android:layout_height="28dp"
-        android:layout_marginStart="13dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:text="Sign UP?"
+        android:onClick="doctorSignup"
+        android:text="Sign Up?"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/doctorLoginButton" />
 </android.support.constraint.ConstraintLayout>
