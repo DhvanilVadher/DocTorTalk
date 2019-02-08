@@ -1,14 +1,20 @@
 package com.example.doctalk;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -16,12 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class doctorSignUpActivity extends AppCompatActivity {
-    DatabaseReference mfb;
-    FirebaseUser Auth;
-    FirebaseUser firebaseUser;
-    EditText email,password,fullname,madicalNumber;
-    String Email,Password,Fullname,MedicalNumber;
-    @Override
+
+    DatabaseReference mdb;
+    private FirebaseAuth Auth;
+    FirebaseUser firebaseUser1;
+    private EditText UserName,Password,Email ;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_sign_up);
@@ -30,30 +35,62 @@ public class doctorSignUpActivity extends AppCompatActivity {
                 ,getResources().getStringArray(R.array.state));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(myAdapter);
+        Email = findViewById( R.id.docSignupEmail );
+        Password = findViewById( R.id.docSignupPass);
+        mdb = FirebaseDatabase.getInstance().getReference();
+        Auth = FirebaseAuth.getInstance();
+        firebaseUser1 = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser1!=null){
+            String a=firebaseUser1.getUid();
+            Toast.makeText( doctorSignUpActivity.this,a,Toast.LENGTH_SHORT ).show();
+            Intent intent = new Intent( doctorSignUpActivity.this,docChat.class);
+            startActivity( intent );
+            finish();
+        }
     }
 
-    public void SignUp(View view) {email = findViewById(R.id.docSignupEmail);
-        mfb  = FirebaseDatabase.getInstance().getReference();
-        password = findViewById(R.id.docSignupPass);
-        fullname = findViewById(R.id.docSignupFullName);
-        madicalNumber  =findViewById(R.id.docSignupMedicalRegistration);
-        Email  = email.getText().toString();
-        Password = password.getText().toString();
-        Fullname = fullname.getText().toString();
-        MedicalNumber = madicalNumber.getText().toString();
-        HashMap<String,String>  hashMap = new HashMap<>();
-        hashMap.clear();
-        hashMap.put("Email",Email);
-        hashMap.put("Password",Password);
-        hashMap.put("FullName",Fullname);
-        hashMap.put("Medical",MedicalNumber);
-        DatabaseReference ref=mfb.child("doctor");
-        ref.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+    public void SignUp(View view) {
+        Auth = FirebaseAuth.getInstance();
+        Auth.createUserWithEmailAndPassword( Email.getText().toString(),Password.getText().toString() ).addOnSuccessListener( new OnSuccessListener<AuthResult>() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Intent intent = new Intent(doctorSignUpActivity.this,docChat.class);
-                startActivity(intent);
+            public void onSuccess( AuthResult authResult ) {
+                FirebaseUser user = authResult.getUser();
+                final String userId= user.getUid();
+                DatabaseReference reference = mdb.child( "doctor" ).child( userId );
+                EditText docSignUpfullname,docSignUpMedicalRegistration,docSignupphone;
+                Spinner spinner= findViewById(R.id.spinner);
+                docSignUpfullname = findViewById(R.id.docSignupFullName);
+                docSignUpMedicalRegistration = findViewById(R.id.docSignupMedicalRegistration);
+                docSignupphone = findViewById(R.id.docSignupPhone);
+                HashMap<String,String> hashMap = new HashMap<>(  );
+                hashMap.put("id",userId);
+                hashMap.put("Email",Email.getText().toString());
+                hashMap.put("PassWord",Password.getText().toString());
+                hashMap.put("Name",docSignUpfullname.getText().toString());
+                hashMap.put("MedicalId",docSignUpMedicalRegistration.getText().toString());
+                hashMap.put("Phone",docSignupphone.getText().toString());
+                hashMap.put("City",spinner.getSelectedItem().toString());
+                reference.setValue( hashMap ).addOnSuccessListener( new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess( Void aVoid ) {
+                        Intent intent = new Intent( doctorSignUpActivity.this,docChat.class );
+                        intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK );
+                        startActivity(intent);
+                        finish();
+                        Toast.makeText( doctorSignUpActivity.this,"Hello"+UserName,Toast.LENGTH_SHORT).show();
+                    }
+                } ).addOnFailureListener( new OnFailureListener() {
+                    @Override
+                    public void onFailure( @NonNull Exception e ) {
+                        Toast.makeText( doctorSignUpActivity.this,"You can't register",Toast.LENGTH_SHORT).show();
+                    }
+                } );
             }
-        });
+        } ).addOnFailureListener( new OnFailureListener() {
+            @Override
+            public void onFailure( @NonNull Exception e ) {
+                Toast.makeText( doctorSignUpActivity.this,"Faild!Something went wrong",Toast.LENGTH_SHORT ).show();
+            }
+        } );
     }
 }
