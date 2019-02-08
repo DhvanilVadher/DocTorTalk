@@ -57,5 +57,6 @@ public class doctorClickActivity extends AppCompatActivity {
             public void onFailure( @NonNull Exception e ) {
                 Toast.makeText( doctorClickActivity.this,"Enter Credentials Properly",Toast.LENGTH_LONG).show();
             }
-        } );}
+        } );
+    }
 }

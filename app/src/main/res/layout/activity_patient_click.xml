@@ -102,6 +102,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/edittextborder"
         android:text="LOGIN"
+        android:onClick="login1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
