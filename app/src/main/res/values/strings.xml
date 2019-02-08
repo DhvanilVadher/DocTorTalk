@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DocTalk</string>
-    
+
     <string-array name="state">
         <item>--Select State--</item>
         <item>Homr</item>
@@ -40,11 +40,6 @@
         <item>Uttarakhand</item>
         <item>Uttar Pradesh</item>
         <item>West Bengal</item>
-
-
-
-
-
 
 
     </string-array>
