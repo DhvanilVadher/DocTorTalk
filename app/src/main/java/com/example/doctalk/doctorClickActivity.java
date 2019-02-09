@@ -25,6 +25,7 @@ public class doctorClickActivity extends AppCompatActivity {
     TextView signUptext;
     EditText email,pwd;
     String Email,Pwd;
+    FirebaseUser firebaseUser1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,14 @@ public class doctorClickActivity extends AppCompatActivity {
         Auth = FirebaseAuth.getInstance();
         Email  = email.getText().toString();
         Pwd = pwd.getText().toString();
+        firebaseUser1 = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser1!=null){
+            String a=firebaseUser1.getUid();
+            Toast.makeText( doctorClickActivity.this,a,Toast.LENGTH_SHORT ).show();
+            Intent intent = new Intent( doctorClickActivity.this,DoctorMainActivty.class);
+            startActivity( intent );
+            finish();
+        }
     }
     public void doctorSignup(View view){
         Intent intent=new Intent(getApplicationContext(),doctorSignUpActivity.class);

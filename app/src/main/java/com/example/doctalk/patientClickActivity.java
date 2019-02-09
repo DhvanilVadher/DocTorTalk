@@ -26,6 +26,7 @@ public class patientClickActivity extends AppCompatActivity {
     TextView signUptext;
     EditText email,pwd;
     String Email,Pwd;
+    FirebaseUser firebaseUser1;
 
     public void patientSignup(View view){
         Intent intent=new Intent(getApplicationContext(),patientSignUpActivity.class);
@@ -43,6 +44,14 @@ public class patientClickActivity extends AppCompatActivity {
         Auth = FirebaseAuth.getInstance();
         Email  = email.getText().toString();
         Pwd = pwd.getText().toString();
+        firebaseUser1 = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser1!=null){
+            String a=firebaseUser1.getUid();
+            Toast.makeText( patientClickActivity.this,a,Toast.LENGTH_SHORT ).show();
+            Intent intent = new Intent( patientClickActivity.this,PatientMain.class);
+            startActivity( intent );
+            finish();
+        }
     }
 
     public void login1(View view) {String Email,Pwd;
