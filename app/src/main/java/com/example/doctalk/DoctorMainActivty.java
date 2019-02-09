@@ -20,7 +20,8 @@ public class DoctorMainActivty extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void LogOut2(View view) {        FirebaseAuth.getInstance().signOut();
+    public void LogOut2(View view) {
+        FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this,MainActivity.class );
         startActivity( intent );
         finish();

@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.Timer;
 import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
@@ -43,5 +46,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         doctor = findViewById(R.id.doctor_front);
         patient = findViewById(R.id.patient_front);
+    }
+
+    public void LogOut2(View view) {        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this,MainActivity.class );
+        startActivity( intent );
+        finish();
     }
 }

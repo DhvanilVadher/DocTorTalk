@@ -57,7 +57,7 @@ public class doctorClickActivity extends AppCompatActivity {
         Auth.signInWithEmailAndPassword( Email,Pwd ).addOnSuccessListener( new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess( AuthResult authResult ) {
-                Intent intent= new Intent(doctorClickActivity.this,docChat.class );
+                Intent intent= new Intent(doctorClickActivity.this,DoctorMainActivty.class );
                 startActivity( intent );
                 finish();
             }

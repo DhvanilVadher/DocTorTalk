@@ -40,14 +40,12 @@ public class docChat extends AppCompatActivity {
     }
     public void SendTo(View view) {
         EditText text = findViewById(R.id.editText);
-        String FinalMessage = text.getText().toString();
-        FirebaseUser  myUser= FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference();
-        HashMap<String,Object>hashMap = new HashMap<>();
-        DatabaseReference ref2= FirebaseDatabase.getInstance().getReference(myUser.getUid());
-        //hashMap.put("sender");
-        hashMap.put("sender_is_doctor",true);
-        hashMap.put("Message",FinalMessage);
+        final String FinalMessage = text.getText().toString();
+        final FirebaseUser  myUser= FirebaseAuth.getInstance().getCurrentUser();
+        final HashMap<String,Object>hashMap = new HashMap<>();
+        hashMap.put("message",FinalMessage);
+        hashMap.put("name",myUser.getUid());
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         ref.child("Messages").push().setValue(hashMap);
         text.setText("");
     }
@@ -64,9 +62,8 @@ public class docChat extends AppCompatActivity {
                         Log.v("Hello", "Please DO Something");
                         continue;
                     }
-                    if (chat.isSender_is_doctor() == true) {
-                        Chats.add(chat);
-                    }
+
+                    Chats.add(chat);
                 }
             }
             @Override

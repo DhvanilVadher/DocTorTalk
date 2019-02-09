@@ -53,14 +53,13 @@ public class patientClickActivity extends AppCompatActivity {
             finish();
         }
     }
-
     public void login1(View view) {String Email,Pwd;
         Email = email.getText().toString();
         Pwd = pwd.getText().toString();
         Auth.signInWithEmailAndPassword( Email,Pwd ).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess( AuthResult authResult ) {
-                Intent intent= new Intent(patientClickActivity.this,docChat.class );
+                Intent intent= new Intent(patientClickActivity.this,PatientMain.class );
                 startActivity( intent );
                 finish();
             }
