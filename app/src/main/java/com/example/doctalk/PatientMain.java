@@ -87,7 +87,7 @@ public class PatientMain extends AppCompatActivity {
         finish();
     }
     public void GoToChat(View view) {
-        Intent intent= new Intent(this,PatientChat.class);
+        Intent intent= new Intent(this,DoctorMainActivty.class);
         startActivity(intent);
     }
     public void GoToBot(View view) {
