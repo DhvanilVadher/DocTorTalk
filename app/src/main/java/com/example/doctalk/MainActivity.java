@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView doctor;
     ImageView patient;
     public void doctorClick(View view){
+
+        //Some Animation part
         doctor.animate().scaleX(1.5f).scaleY(1.5f).setDuration(500);
         doctor.animate().alpha(1f).setDuration(500);
         patient.animate().alpha(0.5f).setDuration(500);
@@ -26,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 500);
     }
+
+
     public void patientClick(View view){
+
+        //again Some Animation Part
         patient.animate().scaleX(1.5f).scaleY(1.5f).setDuration(500);
         patient.animate().alpha(1f).setDuration(500);
         doctor.animate().alpha(0.5f).setDuration(500);
@@ -48,9 +54,12 @@ public class MainActivity extends AppCompatActivity {
         patient = findViewById(R.id.patient_front);
     }
 
-    public void LogOut2(View view) {        FirebaseAuth.getInstance().signOut();
+
+    //name says it all
+    public void LogOut2(View view) {
+        FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this,MainActivity.class );
-        startActivity( intent );
+        startActivity(intent);
         finish();
     }
 }

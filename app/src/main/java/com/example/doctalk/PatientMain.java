@@ -14,7 +14,7 @@ import static com.example.doctalk.universal.doc_or_not;
 public class PatientMain extends AppCompatActivity {
 
     ImageView fb,ins,in,tt,yt;
-
+//links to Doctalk
     public void yt( View view){
         yt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {

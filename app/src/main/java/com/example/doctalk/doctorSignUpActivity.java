@@ -23,22 +23,36 @@ import java.util.HashMap;
 
 public class doctorSignUpActivity extends AppCompatActivity {
 
+
+    //initilization
     DatabaseReference mdb;
     private FirebaseAuth Auth;
     FirebaseUser firebaseUser1;
-    private EditText UserName,Password,Email ;
+    private EditText UserName,Password,Email;
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_sign_up);
+
+        //Spinner initialization
         Spinner spinner=findViewById(R.id.spinner);
         ArrayAdapter<String>myAdapter=new ArrayAdapter<String>(doctorSignUpActivity.this,android.R.layout.simple_list_item_1
                 ,getResources().getStringArray(R.array.state));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(myAdapter);
+
+
+
+        //Assignment (Link To XMLS)
         Email = findViewById( R.id.docSignupEmail );
         Password = findViewById( R.id.docSignupPass);
         mdb = FirebaseDatabase.getInstance().getReference();
         Auth = FirebaseAuth.getInstance();
+
+        //FireBase Vatiable Assignment
         firebaseUser1 = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser1!=null){
             String a=firebaseUser1.getUid();
@@ -47,13 +61,19 @@ public class doctorSignUpActivity extends AppCompatActivity {
             startActivity( intent );
             finish();
         }
+
     }
 
     public void SignUp(View view) {
+
+
         Auth = FirebaseAuth.getInstance();
-        Auth.createUserWithEmailAndPassword( Email.getText().toString(),Password.getText().toString() ).addOnSuccessListener( new OnSuccessListener<AuthResult>() {
+        Auth.createUserWithEmailAndPassword( Email.getText().toString(),Password.getText().toString() )
+                .addOnSuccessListener( new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
+
+                //Again Asignment
                 FirebaseUser user = authResult.getUser();
                 final String userId= user.getUid();
                 DatabaseReference reference = mdb.child( "doctor" ).child( userId );
@@ -62,10 +82,17 @@ public class doctorSignUpActivity extends AppCompatActivity {
                 docSignUpfullname = findViewById(R.id.docSignupFullName);
                 docSignUpMedicalRegistration = findViewById(R.id.docSignupMedicalRegistration);
                 docSignupphone = findViewById(R.id.docSignupPhone);
+
+
+                //Authenticating
+
                 if(userId=="" || Email.getText().toString()=="" || Password.getText().toString()=="" || docSignUpfullname.getText().toString()=="" || docSignUpMedicalRegistration.getText().toString()=="" || spinner.getSelectedItem().toString()==spinner.getItemAtPosition(0)){
                     Toast.makeText( doctorSignUpActivity.this,"Enter All the mandatory credentails",Toast.LENGTH_LONG ).show();
                     return;
                 }
+
+
+                //Insert Data into Hashmap
                 HashMap<String,String> hashMap = new HashMap<>(  );
                 hashMap.put("id",userId);
                 hashMap.put("Email",Email.getText().toString());
@@ -75,6 +102,10 @@ public class doctorSignUpActivity extends AppCompatActivity {
                 hashMap.put("Phone",docSignupphone.getText().toString());
                 hashMap.put("City",spinner.getSelectedItem().toString());
 
+
+                //SetValue in DataBase
+
+
                 reference.setValue(hashMap).addOnSuccessListener( new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess( Void aVoid ) {
@@ -83,7 +114,7 @@ public class doctorSignUpActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-                } ).addOnFailureListener( new OnFailureListener() {@Override
+                }).addOnFailureListener( new OnFailureListener() {@Override
                     public void onFailure(@NonNull Exception e){}});
             }
         } ).addOnFailureListener( new OnFailureListener() {

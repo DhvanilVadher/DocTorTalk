@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class patientClickActivity extends AppCompatActivity {
 
+
+    //initialization
     DatabaseReference mdb;
     FirebaseAuth Auth;
     FirebaseUser firebaseUser;
@@ -31,12 +33,15 @@ public class patientClickActivity extends AppCompatActivity {
     public void patientSignup(View view){
         Intent intent=new Intent(getApplicationContext(),patientSignUpActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_click);
+
+        //Assignment
         signUptext=findViewById(R.id.doctorSignup);
         email = findViewById(R.id.mail);
         pwd = findViewById(R.id.password);
@@ -53,7 +58,9 @@ public class patientClickActivity extends AppCompatActivity {
             finish();
         }
     }
-    public void login1(View view) {String Email,Pwd;
+    public void login1(View view) {
+        //name says it all
+        String Email,Pwd;
         Email = email.getText().toString();
         Pwd = pwd.getText().toString();
         Auth.signInWithEmailAndPassword( Email,Pwd ).addOnSuccessListener(new OnSuccessListener<AuthResult>() {

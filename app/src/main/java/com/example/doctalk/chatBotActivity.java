@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +23,9 @@ import java.util.ArrayList;
 
 public class chatBotActivity extends AppCompatActivity {
 
+
+    //Chat Bot Input and Output using DIalogFlow Api.ai
+
     private final int REQ_CODE_SPEECH_INPUT = 100;
     ImageView button;
     TextView textSpeechInput,outputText;
@@ -32,11 +34,9 @@ public class chatBotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_bot);
-
         button=findViewById(R.id.button);
         textSpeechInput=findViewById(R.id.textSpeechInput);
         outputText=findViewById(R.id.outputText);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,10 +45,8 @@ public class chatBotActivity extends AppCompatActivity {
         });
     }
 
-    //Google Speech Dialog
-
     private void promptSpeechInput() {
-
+    //Google Speech Dialog
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -88,25 +86,19 @@ public class chatBotActivity extends AppCompatActivity {
     }
 
     public String GetText(String query) throws UnsupportedEncodingException {
-
         String text = "";
         BufferedReader reader = null;
-
         // Send data
         try {
-
             // Defined URL  where to send data
             URL url = new URL("https://api.dialogflow.com/v1/query?v=20150910");
-
             // Send POST data request
-
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
             conn.setDoInput(true);
 
             conn.setRequestProperty("Authorization", "Bearer 50908d59de074338a44c96321ac86e8a");
             conn.setRequestProperty("Content-Type", "application/json");
-
             //Create JSONObject here
             JSONObject jsonParam = new JSONObject();
             JSONArray queryArray = new JSONArray();
@@ -115,7 +107,6 @@ public class chatBotActivity extends AppCompatActivity {
 //            jsonParam.put("name", "order a medium pizza");
             jsonParam.put("lang", "en");
             jsonParam.put("sessionId", "12345");
-
 
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
             Log.d("karma", "after conversion is " + jsonParam.toString());
@@ -129,17 +120,13 @@ public class chatBotActivity extends AppCompatActivity {
             StringBuilder sb = new StringBuilder();
             String line = null;
 
-
             // Read Server Response
             while ((line = reader.readLine()) != null) {
                 // Append server response in string
                 sb.append(line + "\n");
             }
 
-
             text = sb.toString();
-
-
 
             JSONObject object1 = new JSONObject(text);
             JSONObject object = object1.getJSONObject("result");

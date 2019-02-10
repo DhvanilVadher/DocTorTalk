@@ -31,12 +31,19 @@ public class docChat extends AppCompatActivity {
         setContentView(R.layout.activity_doc_chat);
         receieveMessage();
     }
+
+
+    //logout
+
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(docChat.this,MainActivity.class );
         startActivity( intent );
         finish();
     }
+
+    //Function to send Message
+
     public void SendTo(View view) {
         EditText text = findViewById(R.id.editText);
         final String FinalMessage = text.getText().toString();
@@ -52,6 +59,9 @@ public class docChat extends AppCompatActivity {
         ref.child("Messages").push().setValue(hashMap);
         text.setText("");
     }
+
+    //Function to receievemessage from database
+
     private void receieveMessage()
     {
         DatabaseReference dbrr = FirebaseDatabase.getInstance().getReference("Messages");

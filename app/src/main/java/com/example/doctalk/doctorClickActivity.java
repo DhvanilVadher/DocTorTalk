@@ -45,18 +45,23 @@ public class doctorClickActivity extends AppCompatActivity {
             String a=firebaseUser1.getUid();
             Toast.makeText( doctorClickActivity.this,a,Toast.LENGTH_SHORT ).show();
             Intent intent = new Intent( doctorClickActivity.this,DoctorMainActivty.class);
-            startActivity( intent );
+            startActivity(intent);
             finish();
         }
     }
     public void doctorSignup(View view){
         Intent intent=new Intent(getApplicationContext(),doctorSignUpActivity.class);
         startActivity(intent);
+        //Activity ends here so on Clicked back Button we prevent logout.
+        finish();
     }
-    public void login(View view){
+    public void login(View view)
+    {
         String Email,Pwd;
+
         Email = email.getText().toString();
         Pwd = pwd.getText().toString();
+
         Auth.signInWithEmailAndPassword( Email,Pwd ).addOnSuccessListener( new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess( AuthResult authResult ) {

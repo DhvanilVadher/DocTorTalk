@@ -61,6 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
+        android:background="@drawable/ui2"
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -73,6 +74,7 @@
         />
 
     <Button
+        android:background="@drawable/updatedul"
         android:id="@+id/updateButton"
         android:layout_width="match_parent"
         android:layout_height="61dp"
@@ -83,6 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
+        android:background="@drawable/updatedul"
         android:onClick="LogOut2"
         android:id="@+id/button3"
         android:layout_width="82dp"

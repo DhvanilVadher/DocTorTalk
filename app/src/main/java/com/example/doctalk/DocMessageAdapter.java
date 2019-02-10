@@ -16,6 +16,7 @@ public class DocMessageAdapter extends RecyclerView.Adapter<DocMessageAdapter.Vi
         this.ctx = ctx;
         MyChats = myChats;
     }
+    //You can Differtialte Between Doctor and Patient
     @NonNull
     @Override
     public ViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

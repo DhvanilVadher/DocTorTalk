@@ -20,15 +20,14 @@ public class DoctorMainActivty extends AppCompatActivity {
 
         updateButton=findViewById(R.id.updateButton);
 
-
     }
 
     public void updateButton( View view){
+        //Going to FeedBack Form
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent viewIntent =
-                        new Intent("android.intent.action.VIEW",
-                                Uri.parse("https://docs.google.com/document/d/1U1CxJ-1T7Uow6GWtA-4c3Q1KFaI--hiFdei6foi1F8g/edit?usp=sharing"));
+                        new Intent("android.intent.action.VIEW", Uri.parse("https://docs.google.com/document/d/1U1CxJ-1T7Uow6GWtA-4c3Q1KFaI--hiFdei6foi1F8g/edit?usp=sharing"));
                 startActivity(viewIntent);
             }
         });
