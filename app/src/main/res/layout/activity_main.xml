@@ -47,8 +47,8 @@
         android:id="@+id/doctor_front"
         android:layout_width="169dp"
         android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="139dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="128dp"
         android:onClick="doctorClick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
@@ -56,15 +56,14 @@
 
     <ImageView
         android:id="@+id/patient_front"
-        android:layout_width="199dp"
-        android:layout_height="201dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="161dp"
+        android:layout_height="174dp"
+        android:layout_marginStart="198dp"
         android:layout_marginTop="139dp"
         android:layout_marginEnd="16dp"
         android:onClick="patientClick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/doctor_front"
+        app:layout_constraintStart_toStartOf="@+id/doctor_front"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:srcCompat="@drawable/patient" />
 </android.support.constraint.ConstraintLayout>

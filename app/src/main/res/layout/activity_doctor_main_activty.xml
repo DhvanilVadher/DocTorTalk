@@ -74,11 +74,11 @@
         />
 
     <Button
-        android:background="@drawable/updatedul"
         android:id="@+id/updateButton"
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        android:layout_marginTop="544dp"
+        android:layout_marginTop="508dp"
+        android:background="@drawable/updatedul"
         android:onClick="updateButton"
         android:text="Update Symptoms"
         app:layout_constraintStart_toStartOf="parent"
