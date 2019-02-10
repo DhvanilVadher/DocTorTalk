@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.example.doctalk.universal.doc_or_not;
+
 public class doctorClickActivity extends AppCompatActivity {
     DatabaseReference mdb;
     FirebaseAuth Auth;
@@ -28,6 +30,7 @@ public class doctorClickActivity extends AppCompatActivity {
     FirebaseUser firebaseUser1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        doc_or_not = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_click);
         signUptext=findViewById(R.id.doctorSignup);

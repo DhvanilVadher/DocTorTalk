@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import static com.example.doctalk.universal.doc_or_not;
+
 public class PatientMain extends AppCompatActivity {
 
     ImageView fb,ins,in,tt,yt;
@@ -78,8 +80,8 @@ public class PatientMain extends AppCompatActivity {
         in=findViewById( R.id.in );
         tt=findViewById( R.id.tt );
         yt=findViewById( R.id.yt );
-    }
 
+    }
     public void LogOut(View view) {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(PatientMain.this,MainActivity.class );
@@ -87,7 +89,8 @@ public class PatientMain extends AppCompatActivity {
         finish();
     }
     public void GoToChat(View view) {
-        Intent intent= new Intent(this,DoctorMainActivty.class);
+        doc_or_not = false;
+        Intent intent= new Intent(this,docChat.class);
         startActivity(intent);
     }
     public void GoToBot(View view) {

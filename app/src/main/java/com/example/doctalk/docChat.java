@@ -16,10 +16,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
+import static com.example.doctalk.universal.doc_or_not;
 
 public class docChat extends AppCompatActivity {
     RecyclerView recycler1;
@@ -31,7 +31,6 @@ public class docChat extends AppCompatActivity {
         setContentView(R.layout.activity_doc_chat);
         receieveMessage();
     }
-
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(docChat.this,MainActivity.class );
@@ -44,7 +43,11 @@ public class docChat extends AppCompatActivity {
         final FirebaseUser  myUser= FirebaseAuth.getInstance().getCurrentUser();
         final HashMap<String,Object>hashMap = new HashMap<>();
         hashMap.put("message",FinalMessage);
-        hashMap.put("name",myUser.getUid());
+
+        if(doc_or_not==true)
+            hashMap.put("name","Doctor");
+        else
+            hashMap.put("name","Patient");
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         ref.child("Messages").push().setValue(hashMap);
         text.setText("");
@@ -62,7 +65,6 @@ public class docChat extends AppCompatActivity {
                         Log.v("Hello", "Please DO Something");
                         continue;
                     }
-
                     Chats.add(chat);
                 }
             }
