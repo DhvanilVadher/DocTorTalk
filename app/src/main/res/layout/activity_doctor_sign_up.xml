@@ -68,17 +68,13 @@
         android:id="@+id/docSignupEmail"
         android:layout_width="303dp"
         android:layout_height="24dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="60dp"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:hint="Enter Email"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="262dp" />
 
     <EditText
         android:id="@+id/docSignupPass"
@@ -113,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="160dp"
-        android:text="Full Name"
+        android:text="Full Name*"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -137,12 +133,10 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="228dp"
-        android:text="Medical Registration No"
+        android:text="Medical Registration No*"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="430dp" />
 
     <EditText
         android:id="@+id/docSignupMedicalRegistration"
@@ -165,7 +159,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
         android:layout_marginTop="300dp"
-        android:text="State"
+        android:text="State*"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -185,6 +179,7 @@
         android:id="@+id/docSignupPhone"
         android:layout_width="307dp"
         android:layout_height="24dp"
+        android:inputType="number"
         android:layout_marginStart="44dp"
         android:layout_marginTop="410dp"
         android:background="@drawable/edittextborder"

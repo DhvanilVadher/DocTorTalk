@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Space;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,7 +27,9 @@ public class patientSignUpActivity extends AppCompatActivity {
     DatabaseReference mdb;
     private FirebaseAuth Auth;
     FirebaseUser firebaseUser1;
-    private EditText UserName,Password,Email ;
+    private EditText UserName,Password,Email,name,address,phonenumber;
+    private String SUserName,SPassword,SEmail,Sname,Saddress,Sphonenumber;
+    String state;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_sign_up);
@@ -36,10 +39,18 @@ public class patientSignUpActivity extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(myAdapter);
 
-        Email = findViewById( R.id.patientSignupMail );
+        Email = findViewById( R.id.patientSignupMail);
+        SEmail = Email.getText().toString();
         Password = findViewById( R.id.patientSignupMailPassword);
+        SPassword = Password.getText().toString();
         mdb = FirebaseDatabase.getInstance().getReference();
         Auth = FirebaseAuth.getInstance();
+        name = findViewById( R.id.patientSignupMailFullName );
+        Sname = name.getText().toString();
+        address = findViewById( R.id.patientSignupMailAddress );
+        Saddress = address.getText().toString();
+        Spinner spinner1 = findViewById( R.id.spinner );
+        state =spinner1.getSelectedItem().toString();
         firebaseUser1 = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser1!=null){
             String a=firebaseUser1.getUid();
@@ -56,11 +67,18 @@ public class patientSignUpActivity extends AppCompatActivity {
             public void onSuccess( AuthResult authResult ) {
                 FirebaseUser user = authResult.getUser();
                 final String userId= user.getUid();
+                if(SEmail == "" || SPassword==""  || Sname == "" || state == ""){
+                    Toast.makeText( patientSignUpActivity.this,"Enter All the mandatory credential",Toast.LENGTH_LONG ).show();
+                    return;
+                }
                 DatabaseReference reference = mdb.child( "User" ).child( userId );
                 HashMap<String,String> hashMap = new HashMap<>(  );
                 hashMap.put("id",userId);
-                hashMap.put("Email",Email.getText().toString());
-                hashMap.put("PassWord",Password.getText().toString());
+                hashMap.put("Email",SEmail);
+                hashMap.put("PassWord",SPassword);
+                hashMap.put("Fullname",Sname);
+                hashMap.put( "Address",Saddress );
+                hashMap.put( "State",state);
                 reference.setValue( hashMap ).addOnSuccessListener( new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess( Void aVoid ) {

@@ -53,7 +53,7 @@ public class doctorSignUpActivity extends AppCompatActivity {
         Auth = FirebaseAuth.getInstance();
         Auth.createUserWithEmailAndPassword( Email.getText().toString(),Password.getText().toString() ).addOnSuccessListener( new OnSuccessListener<AuthResult>() {
             @Override
-            public void onSuccess( AuthResult authResult ) {
+            public void onSuccess(AuthResult authResult) {
                 FirebaseUser user = authResult.getUser();
                 final String userId= user.getUid();
                 DatabaseReference reference = mdb.child( "doctor" ).child( userId );
@@ -62,6 +62,10 @@ public class doctorSignUpActivity extends AppCompatActivity {
                 docSignUpfullname = findViewById(R.id.docSignupFullName);
                 docSignUpMedicalRegistration = findViewById(R.id.docSignupMedicalRegistration);
                 docSignupphone = findViewById(R.id.docSignupPhone);
+                if(userId=="" || Email.getText().toString()=="" || Password.getText().toString()=="" || docSignUpfullname.getText().toString()=="" || docSignUpMedicalRegistration.getText().toString()=="" || spinner.getSelectedItem().toString()==spinner.getItemAtPosition(0)){
+                    Toast.makeText( doctorSignUpActivity.this,"Enter All the mandatory credentails",Toast.LENGTH_LONG ).show();
+                    return;
+                }
                 HashMap<String,String> hashMap = new HashMap<>(  );
                 hashMap.put("id",userId);
                 hashMap.put("Email",Email.getText().toString());
@@ -70,27 +74,21 @@ public class doctorSignUpActivity extends AppCompatActivity {
                 hashMap.put("MedicalId",docSignUpMedicalRegistration.getText().toString());
                 hashMap.put("Phone",docSignupphone.getText().toString());
                 hashMap.put("City",spinner.getSelectedItem().toString());
-                reference.setValue( hashMap ).addOnSuccessListener( new OnSuccessListener<Void>() {
+
+                reference.setValue(hashMap).addOnSuccessListener( new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess( Void aVoid ) {
                         Intent intent = new Intent( doctorSignUpActivity.this,docChat.class );
                         intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK );
                         startActivity(intent);
                         finish();
-                        Toast.makeText( doctorSignUpActivity.this,"Hello"+UserName,Toast.LENGTH_SHORT).show();
                     }
-                } ).addOnFailureListener( new OnFailureListener() {
-                    @Override
-                    public void onFailure( @NonNull Exception e ) {
-                        Toast.makeText( doctorSignUpActivity.this,"You can't register",Toast.LENGTH_SHORT).show();
-                    }
-                } );
+                } ).addOnFailureListener( new OnFailureListener() {@Override
+                    public void onFailure(@NonNull Exception e){}});
             }
         } ).addOnFailureListener( new OnFailureListener() {
             @Override
-            public void onFailure( @NonNull Exception e ) {
-                Toast.makeText( doctorSignUpActivity.this,"Faild!Something went wrong",Toast.LENGTH_SHORT ).show();
-            }
+            public void onFailure( @NonNull Exception e ) {}
         } );
     }
 }
