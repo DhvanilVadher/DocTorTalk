@@ -1,0 +1,17 @@
+body {
+    background-image:linear-gradient(rgba(223,252,255,0.6),rgba(215,249,255,0.6));
+}
+
+.logoimg {
+    width:5%;
+}
+
+.heading {
+    font-family: Righteous;
+    font-weight: bold;
+    font-size: 60px;
+    font-size: 60px;
+    color:#692c7e;
+    padding: 5px;
+    text-align: center;
+}

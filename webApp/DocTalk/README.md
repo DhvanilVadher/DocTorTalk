@@ -1,0 +1,2 @@
+# DocTalk
+ India has a healthy doctor-patient ratio, but still there are some areas where patients are deprived of medical assistance due to absence or non-availability of doctors. To overcome this situation a software is needed where a community of specialised doctors can give online advice, prescription etc., to a patient in need. So by this software we will be able to help a patient when a doctor is not available online with the help of data of previous similar patients, by our own data and when doctor are available they will be able to chat online with them.

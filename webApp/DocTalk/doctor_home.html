@@ -1,0 +1,155 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doctor Home</title>
+    <link rel="icon" type="image/ico" href="Images/logo.png" />
+    <link rel="stylesheet" href="doctor_home.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+</head>
+<body>
+    <div class="heading">
+            <image src="Images/logo1.png" width="3.5%" alt="DocTalk Logo"/>ocTalk Pvt. Ltd.
+    </div>
+    <nav class="h">
+        <div class="toggle">
+            <i class="fa fa-bars menu" aria-hidden="true"></i>
+        </div>
+        <ul>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+        </ul>
+    </nav>
+    <hr>
+    <div style="width:100%; background-color: black;">
+        <img src="Images/medical-background-3.jpg" style=" border-radius: 400px"/>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.menu').click(function(){
+                $('ul').toggleClass('active');
+            })
+        })
+    </script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doctor Home</title>
+    <link rel="icon" type="image/ico" href="Images/logo1.png" />
+    <link rel="stylesheet" href="doctor_home.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous|Secular+One|Acme|Viga" rel="stylesheet">
+</head>
+<body>
+    <div class="top-part">
+        <div class="heading">
+                <img src="Images/logo1.png" width="3.5%" alt="DocTalk Logo"/>ocTalk Pvt. Ltd.
+        </div>
+        <button class="logout-btn" id="logout">Logout</button>
+    </div>
+    <!--
+    <nav class="h">
+        <div class="toggle">
+            <i class="fa fa-bars menu" aria-hidden="true"></i>
+        </div>
+        <ul>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+        </ul>
+    </nav>
+    <hr>
+    -->
+    <div style="width:100%; background-image:url('Images/medical-background-2.jpg')">
+        <div class="serve-pats"> Serve the patients on your time and feet</div>
+        <button class="chatbtn" onclick="goToChat(0)">Chat with Patients</button>
+    </div>
+    <div style="width:100%; background-image:url('Images/medical-background.jpg')">
+        <div class="update-symps"> Update the disease data ...</div>
+        <div class="update-small-1">Here you can update some new sypmtoms</div>
+        <div class="update-small-2">in their respective disease which you recently noted...</div>
+        <a href="https://docs.google.com/document/d/1U1CxJ-1T7Uow6GWtA-4c3Q1KFaI--hiFdei6foi1F8g/edit?usp=sharing" class="updatebtn">Update Symptoms</a>
+        <hr class="update-hr">
+    </div>
+    <div style="font-family:Acme; font-size:20px; margin-top:15px; margin-left:45%; margin-bottom: 50px;">
+        Contact us At:
+    </div>
+    <div class="contact-us">
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/ourdoctalk">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span class="fa fa-facebook" aria-hidden="true"></span>
+                </a>
+            </li>
+             <li>
+                <a href="https://www.instagram.com/doctalk.pvt.ltd/">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span class="fa fa-instagram" aria-hidden="true"></span>
+                </a>
+            </li>
+             <li>
+                <a href="https://twitter.com/DocTalk4">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span class="fa fa-twitter" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/doc-talk-17b59917a/">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span class="fa fa-linkedin" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/channel/UCny6KCh8xFAjjBkl3mtW2GQ/featured/">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span class="fa fa-youtube-play" aria-hidden="true"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <!--
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.menu').click(function(){
+                $('ul').toggleClass('active');
+            })
+        })
+    </script> -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="fire_log_out.js"></script>
+    <script src="fire_chat.js"></script>
+</body>
+</html>
